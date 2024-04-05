@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { GridLoader } from "react-spinners";
 import data from "./data.json";
+import './Refresh.css'
 
 
 const Refresh = ({ refreshOption, setIsLoading }) => {
     let [loading, setLoading] = useState(false);
     let [color, setColor] = useState("#282c34");
 
-const effect =useEffect(() => {
-            setLoading(true);
-            setIsLoading(true)
-            setTimeout(() => {
-                setLoading(false);
-                setIsLoading(false);
-            }, 5000);
+    const effect = useEffect(() => {
+        setLoading(true);
+        setIsLoading(true)
+        setTimeout(() => {
+            setLoading(false);
+            setIsLoading(false);
+        }, 5000);
     }, [refreshOption]);
 
 
     return (
         <div>
-            { refreshOption === "refreshTable" ? (
+            {refreshOption === "refreshTable" ? (
 
                 <div className="refreshTable">
-                    <GridLoader
+                    {/* <GridLoader
                         color={color}
                         loading={loading}
                         size={145}
@@ -30,8 +31,13 @@ const effect =useEffect(() => {
                         aria-label="Loading Spinner"
                         data-testid="loader"
                         className="refreshTable"
-                    />
-                    <p>Table is Re-Loading, Please Wait...</p>
+                    /> */}
+                    <div className="tableLoader">
+                        <h1>Loading</h1>
+                    </div>
+                    <div>
+                        <h1><span className="loading-dots">. . .</span></h1>
+                    </div>
                 </div>
             ) : (
                 <div className="refreshPage">
@@ -44,11 +50,17 @@ const effect =useEffect(() => {
                         data-testid="loader"
                         className="refreshTable"
                     /> */}
-                    <div className="page-loader">
-
+                    <div className="pageloader">
                     </div>
-                    <p>Page is ReLoading . . .</p>
+                    <div>
+                        <h1>Loading</h1>
+                    </div>
+                    <div>
+                        <h1><span className="loading-dots">. . .</span></h1>
+                    </div>
+
                 </div>
+
             )}
         </div>
     );
